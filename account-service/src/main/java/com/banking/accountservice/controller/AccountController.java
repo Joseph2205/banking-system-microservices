@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.math.BigDecimal;
 
@@ -23,7 +24,7 @@ public class AccountController {
 
         @PostMapping
         public ResponseEntity<AccountResponse> createAccount (
-                @valid_@RequestBody CreateAccountRequest request){
+                @valid @RequestBody CreateAccountRequest request){
 
                 return ResponseEntity.status(HttpStatus.CREATED)
                         .body(accountService.createAccount(request));
@@ -42,7 +43,7 @@ public class AccountController {
 
                 return ResponseEntity.ok(accountService.getBalance(accountNumber))
         }
-         @PutMapping("/{accountNUmber}/block")
+         @PutMapping("/{accountNumber}/block")
         public ResponseEntity<String> blockAccount (
                 @PathVariable String accountNumber){
 
